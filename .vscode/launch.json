@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Checkout",
+            "request": "launch",
+            "mainClass": "app.Checkout",
+            "projectName": "assignment2"
+        }
+    ]
+}
