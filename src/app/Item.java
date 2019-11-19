@@ -1,7 +1,8 @@
 package app;
 
 public abstract class Item{
-    protected int itemID = 1; //greater than 0 
+    protected static int counter = 0; //greater than 0 
+    protected int itemID;
     protected double price; //greater than 0
     protected int quantity; //greater than 0
     protected String title; //cannot be empty
@@ -28,13 +29,20 @@ public abstract class Item{
         this.title = title;
         this.price = price;
         this.quantity = quantity;
-        itemID++;
+        counter++;
+        this.itemID = counter;
     }
 
-    //abstract method 
+    /**
+     * Abstract method Display
+     */ 
     public abstract void Display();
 
+    /**
+     * method to purchase an item
+     */
     public void Purchase(){
+        System.out.println("Item purchased");
         quantity--;
     }
 

@@ -15,7 +15,7 @@ public class GiftCard extends Item implements Comparable<GiftCard>{
     public void Display(){
         System.out.println("Product: " + title + ", Item ID: " + itemID);
         System.out.println("Label: " + label + ", Manufacturer: " + manufacturer);
-        System.out.println("Price: " + price + ", Quantity; " + quantity);
+        System.out.println("Price: " + price + ", Quantity: " + quantity);
         System.out.println("");
     }
 

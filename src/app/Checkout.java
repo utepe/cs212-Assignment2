@@ -1,6 +1,7 @@
 package app;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 /** Tester Class */
@@ -8,22 +9,21 @@ import java.util.Scanner;
 public class Checkout extends ShoppingCart{
     public static void main(String[] args)
             throws InvalidTitleException, InvalidPriceException, InvalidQuantityException {
-        LinkedList<Item> items = new LinkedList<Item>();
+        List<Item> items = new LinkedList<Item>();
         Scanner sc = new Scanner(System.in);
-        
-
-        while(true){
-            System.out.println("Welcome to the e-Store, please select what you would like to do: ");
+        boolean run = false;
+        System.out.println("Welcome to the e-Store, please select what you would like to do: ");
+        while(!run){
             System.out.println("1. Add item to the inventory");
             System.out.println("2. Display all items");
             System.out.println("3. Display only Books");
             System.out.println("4. Display only Gift Cards");
             System.out.println("5. Display only Shoes");
             System.out.println("6. Purchase an item");
+            System.out.println("Enter any other number it exit");
             
-
+            System.out.println("");
             int choice = sc.nextInt();
-            sc.close();
             System.out.println("");
 
             switch (choice) {
@@ -48,7 +48,7 @@ public class Checkout extends ShoppingCart{
                     purchaseItem(items, itemID);
                     break;
                 default:
-                    break;
+                    run = true;
             }
         }
     }

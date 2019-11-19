@@ -1,11 +1,13 @@
 package app;
 
+import java.util.Collections;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ShoppingCart{
 
-    protected static LinkedList<Item> addItem(LinkedList<Item> items)
+    protected static List<Item> addItem(List<Item> items)
             throws InvalidTitleException, InvalidPriceException, InvalidQuantityException {
         
         Scanner sc = new Scanner(System.in);
@@ -14,9 +16,9 @@ public class ShoppingCart{
         System.out.println("2. Add Gift Card");
         System.out.println("3. Add Shoe");
         int choice = sc.nextInt();
-        sc.close();
-        System.out.println("");
         
+        System.out.println("");
+
         switch (choice) {
             case 1:
                 items.add(addBook());
@@ -34,19 +36,19 @@ public class ShoppingCart{
             throws InvalidTitleException, InvalidPriceException, InvalidQuantityException {
         
         Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter Price of Book: ");
         double price = sc.nextDouble();
         System.out.println("Enter Quantity of this book: ");
         int quantity = sc.nextInt();
         System.out.println("Enter Author name: ");
-        String author = sc.nextLine();
+        String author = scan.nextLine();
         System.out.println("Enter Title of the Book: ");
-        String bookTitle = sc.nextLine();
+        String bookTitle = scan.nextLine();
         System.out.println("Enter year it was written: ");
         int year = sc.nextInt();
         
-        sc.close();
         System.out.println("");
 
         Item book = new Book(price, quantity, author, bookTitle, year);
@@ -57,17 +59,17 @@ public class ShoppingCart{
             throws InvalidTitleException, InvalidPriceException, InvalidQuantityException {
 
         Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         
         System.out.println("Enter Price of Gift Card: ");
         double price = sc.nextDouble();
         System.out.println("Enter Quantity of this Gift Card: ");
         int quantity = sc.nextInt();
         System.out.println("Enter the Gift Card Label: ");
-        String label = sc.nextLine();
+        String label = scan.nextLine();
         System.out.println("Enter the Gift Card Manufacturer: ");
-        String manufacturer = sc.nextLine();
+        String manufacturer = scan.nextLine();
         
-        sc.close();
         System.out.println("");
 
         Item giftCard = new GiftCard(price, quantity, label, manufacturer);
@@ -78,58 +80,73 @@ public class ShoppingCart{
             throws InvalidTitleException, InvalidPriceException, InvalidQuantityException {
 
         Scanner sc = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
 
         System.out.println("Enter Price of Shoe: ");
         double price = sc.nextDouble();
         System.out.println("Enter Quantity of Shoe: ");
         int quantity = sc.nextInt();
         System.out.println("Enter Colour of Shoe: ");
-        String colour = sc.nextLine();
+        String colour = scan.nextLine();
         System.out.println("Enter Size of Shoe: ");
         double size = sc.nextDouble();
 
-        sc.close();
         System.out.println("");
 
         Item shoe = new Shoe(price, quantity, colour, size);
         return shoe;
     }
 
-    protected static void displayAllItems(LinkedList<Item> items) {
-        items.forEach(name -> {
-            name.Display();
+    protected static void displayAllItems(List<Item> items) {
+        for (Item item : items) {
+            item.Display();
+        }
+    }
+
+    protected static void displayBooks(List<Item> items){
+        LinkedList<Book> bookList = new LinkedList<>();
+        items.forEach(book -> {
+            if(book instanceof Book)
+                bookList.add((Book) book);
+        });
+    
+        Collections.sort(bookList);
+        bookList.forEach(book-> {
+            book.Display();
         });
     }
 
-    protected static void displayBooks(LinkedList<Item> items){
-        items.forEach(name -> {
-            if(name instanceof Book)
-                items.sort(null);
-                ((Book) name).Display();
+    protected static void displayGiftCards(List<Item> items){
+        LinkedList<GiftCard> cardList = new LinkedList<>();
+        items.forEach(giftCard -> {
+            if(giftCard instanceof  GiftCard)
+                cardList.add((GiftCard) giftCard);
+        });
+
+        Collections.sort(cardList);
+        cardList.forEach(giftCard ->{
+            giftCard.Display();
         });
     }
 
-    protected static void displayGiftCards(LinkedList<Item> items){
-        items.forEach(name -> {
-            if(name instanceof  GiftCard)
-                items.sort(null);
-                ((GiftCard) name).Display();
+    protected static void displayShoes(List<Item> items){
+        LinkedList<Shoe> shoeList = new LinkedList<>();
+        items.forEach(shoe ->{
+            if(shoe instanceof Shoe)
+                shoeList.add((Shoe) shoe);
         });
-    }
 
-    protected static void displayShoes(LinkedList<Item> items){
-        items.forEach(name -> {
-            if(name instanceof Shoe)
-                items.sort(null);
-                ((Shoe) name).Display();
+        Collections.sort(shoeList);
+        shoeList.forEach(shoe ->{
+            shoe.Display();
         });
     }
 
     
-    protected static void purchaseItem(LinkedList<Item> items, int itemID) {
-        items.forEach(name -> {
-            if(name.itemID == itemID){
-                name.Purchase();
+    protected static void purchaseItem(List<Item> items, int itemID) {
+        items.forEach(item -> {
+            if(item.itemID == itemID){
+                item.Purchase();
             }
         });
     }

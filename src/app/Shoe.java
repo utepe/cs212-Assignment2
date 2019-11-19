@@ -9,7 +9,7 @@ public class Shoe extends Item implements Comparable<Shoe>{
         super("Shoe", price, quantity);
         if(isValidColour(colour))
             this.colour = colour;
-            this.size = size;
+        this.size = size;
     }
 
     private boolean isValidColour(String colour){
@@ -29,7 +29,7 @@ public class Shoe extends Item implements Comparable<Shoe>{
     public void Display(){
         System.out.println("Product: " + title + ", Item ID: " + itemID);
         System.out.println("Colour: " + colour + ", Size: " + size);
-        System.out.println("Price: " + price + ", Quantity; " + quantity);
+        System.out.println("Price: " + price + ", Quantity: " + quantity);
         System.out.println("");
     }
 
