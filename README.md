@@ -28,7 +28,7 @@ Display only books sorted by author name.
 
 Display only gifts sorted by label.
 
-Display only shoes sorted by sizeDelete an item by item_id
+Display only shoes sorted by size
 
 Purchase an item by removing the purchased quantity from the inventory
 
